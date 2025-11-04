@@ -1,21 +1,23 @@
-import express from 'express'
-import cors from 'cors'
 import { exec } from 'child_process'
 import { promisify } from 'util'
 
 const execAsync = promisify(exec)
 
-const app = express()
-const PORT = process.env.PORT || 3001
+export default async function handler(req, res) {
+  // Set CORS headers
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
 
-app.use(cors())
-app.use(express.json())
+  if (req.method === 'OPTIONS') {
+    res.status(200).end()
+    return
+  }
 
-app.options('/api/check-proxy', (req, res) => {
-  res.status(200).end()
-})
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' })
+  }
 
-app.post('/api/check-proxy', async (req, res) => {
   try {
     const { host, port, username, password } = req.body
 
@@ -80,13 +82,4 @@ app.post('/api/check-proxy', async (req, res) => {
       details: error.message 
     })
   }
-})
-
-app.get('/health', (req, res) => {
-  res.json({ status: 'ok' })
-})
-
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`)
-})
-
+}
