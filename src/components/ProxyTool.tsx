@@ -84,10 +84,12 @@ const ProxyTool = () => {
     setProxyResult(null)
 
     try {
-
-      const backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001'
+      // Use environment variable if set, otherwise use relative URL (works on Vercel)
+      // or fallback to localhost for development
+      const apiUrl = import.meta.env.VITE_API_URL || 
+        (import.meta.env.PROD ? '' : 'http://localhost:3001')
       
-      const response = await fetch(`${backendUrl}/api/check-proxy`, {
+      const response = await fetch(`${apiUrl}/api/check-proxy`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

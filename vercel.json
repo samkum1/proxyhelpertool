@@ -1,0 +1,14 @@
+{
+  "functions": {
+    "api/check-proxy.js": {
+      "maxDuration": 30
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api/check-proxy",
+      "destination": "/api/check-proxy"
+    }
+  ]
+}
+
