@@ -84,21 +84,28 @@ const ProxyTool = () => {
     setProxyResult(null)
 
     try {
-      // Use environment variable if set, otherwise use relative URL (works on Vercel)
-      // In development, use localhost, in production use relative URL
+      // Determine API URL based on environment
+      // Use environment variable if set, otherwise check hostname
       let apiUrl = import.meta.env.VITE_API_URL
       
       if (!apiUrl) {
-        // Check if we're in development mode
-        if (import.meta.env.DEV || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        // Check hostname at runtime (works in both dev and production)
+        const hostname = window.location.hostname
+        if (hostname === 'localhost' || hostname === '127.0.0.1') {
+          // Local development - use localhost server
           apiUrl = 'http://localhost:3001'
         } else {
-          // Production - use relative URL
+          // Production (Vercel) - use relative URL
           apiUrl = ''
         }
       }
       
-      const response = await fetch(`${apiUrl}/api/check-proxy`, {
+      const apiEndpoint = `${apiUrl}/api/check-proxy`
+      
+      // Debug log (remove in production if needed)
+      console.log('API Endpoint:', apiEndpoint, 'Hostname:', window.location.hostname)
+      
+      const response = await fetch(apiEndpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
