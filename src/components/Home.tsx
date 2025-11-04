@@ -1,57 +1,65 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Globe, BookOpen, ArrowRight, Shield, Search, Calendar, Heart } from 'lucide-react'
+import { Globe, ArrowRight, Shield, Search, Calendar, Heart, Zap, HelpCircle, Lock } from 'lucide-react'
+import Footer from './Footer'
 
 export default function Home() {
   return (
-    <div className="min-h-screen gradient-bg flex items-center justify-center p-4">
-      <div className="w-full max-w-6xl">
-        <div className="text-center mb-12">
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-in">
-            Welcome to Your
-            <span className="block bg-gradient-to-r from-blue-400 to-blue-300 bg-clip-text text-transparent">
-              Digital Workspace
-            </span>
+    <div className="min-h-screen bg-white" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(0,0,0,0.03) 1px, transparent 0)', backgroundSize: '20px 20px' }}>
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32 pt-24">
+        {/* Hero Section */}
+        <div className="text-center mb-16 sm:mb-20 pt-8">
+          <div className="mb-6 flex justify-center">
+            <img 
+              src="/lightning-proxies-logo.svg" 
+              alt="Lightning Proxies" 
+              className="h-10 sm:h-12 w-auto"
+            />
+          </div>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-4">
+            Proxy Helper Tools
+            <span className="block mt-2 text-blue-600">by Lightning Proxies</span>
           </h1>
-          <p className="text-xl md:text-2xl text-white/80 animate-fade-in max-w-3xl mx-auto">
-            A powerful combination of proxy testing and personal diary management
+          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+            Powerful proxy testing and fraud detection tools to help you verify, check, and analyze proxy connections
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
+        {/* Main Services Grid */}
+        <div className="grid md:grid-cols-2 gap-6 sm:gap-8 mb-16 sm:mb-20">
           {/* Proxy Checker Card */}
           <Link 
             to="/proxy"
-            className="glass-effect rounded-2xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-300 cursor-pointer group block"
+            className="bg-gray-50 rounded-2xl p-6 sm:p-8 border border-gray-200 hover:shadow-lg transition-all duration-300 cursor-pointer group block"
           >
-            <div className="flex items-center gap-4 mb-6">
-              <div className="p-3 bg-[#0086FF]/20 rounded-xl">
-                <Globe className="w-8 h-8 text-[#0086FF]" />
+            <div className="flex flex-col items-center text-center mb-6">
+              <div className="w-16 h-16 bg-black rounded-xl flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
+                <Globe className="w-8 h-8 text-white" />
               </div>
-              <h2 className="text-2xl font-bold text-white">Proxy IP Checker</h2>
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3">Proxy IP Checker</h2>
             </div>
             
-            <p className="text-white/70 mb-6 leading-relaxed">
+            <p className="text-gray-600 mb-6 leading-relaxed text-center text-sm sm:text-base">
               Test your proxy connections and verify your IP information through secure proxy servers. 
               Perfect for developers, security researchers, and privacy-conscious users.
             </p>
             
             <div className="space-y-3 mb-6">
-              <div className="flex items-center gap-3 text-white/80">
-                <Shield className="w-5 h-5 text-[#0086FF]" />
-                <span>Secure proxy testing</span>
+              <div className="flex items-center gap-3 text-gray-700">
+                <Shield className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                <span className="text-sm sm:text-base">Secure proxy testing</span>
               </div>
-              <div className="flex items-center gap-3 text-white/80">
-                <Globe className="w-5 h-5 text-[#0086FF]" />
-                <span>Real-time IP verification</span>
+              <div className="flex items-center gap-3 text-gray-700">
+                <Globe className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                <span className="text-sm sm:text-base">Real-time IP verification</span>
               </div>
-              <div className="flex items-center gap-3 text-white/80">
-                <ArrowRight className="w-5 h-5 text-[#0086FF]" />
-                <span>Easy cURL command generation</span>
+              <div className="flex items-center gap-3 text-gray-700">
+                <ArrowRight className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                <span className="text-sm sm:text-base">Easy cURL command generation</span>
               </div>
             </div>
             
-            <div className="flex items-center gap-2 text-[#0086FF] group-hover:text-blue-400 transition-colors">
+            <div className="flex items-center justify-center gap-2 text-blue-600 group-hover:text-blue-700 transition-colors font-medium">
               <span>Try Proxy Checker</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </div>
@@ -60,121 +68,166 @@ export default function Home() {
           {/* Fraud Detection Card */}
           <Link 
             to="/fraud"
-            className="glass-effect rounded-2xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-300 cursor-pointer group block"
+            className="bg-gray-50 rounded-2xl p-6 sm:p-8 border border-gray-200 hover:shadow-lg transition-all duration-300 cursor-pointer group block"
           >
-            <div className="flex items-center gap-4 mb-6">
-              <div className="p-3 bg-amber-500/20 rounded-xl">
-                <Shield className="w-8 h-8 text-amber-400" />
+            <div className="flex flex-col items-center text-center mb-6">
+              <div className="w-16 h-16 bg-black rounded-xl flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
+                <Shield className="w-8 h-8 text-white" />
               </div>
-              <h2 className="text-2xl font-bold text-white">Fraud Detection</h2>
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3">Fraud Detection</h2>
             </div>
             
-            <p className="text-white/70 mb-6 leading-relaxed">
+            <p className="text-gray-600 mb-6 leading-relaxed text-center text-sm sm:text-base">
               Advanced fraud detection using free APIs to identify VPNs, proxies, 
               bots, and other suspicious activities. No API key required - completely free to use.
             </p>
             
             <div className="space-y-3 mb-6">
-              <div className="flex items-center gap-3 text-white/80">
-                <Shield className="w-5 h-5 text-amber-400" />
-                <span>VPN & Proxy detection</span>
+              <div className="flex items-center gap-3 text-gray-700">
+                <Shield className="w-5 h-5 text-orange-600 flex-shrink-0" />
+                <span className="text-sm sm:text-base">VPN & Proxy detection</span>
               </div>
-              <div className="flex items-center gap-3 text-white/80">
-                <Search className="w-5 h-5 text-orange-400" />
-                <span>Bot and Tor network detection</span>
+              <div className="flex items-center gap-3 text-gray-700">
+                <Search className="w-5 h-5 text-orange-600 flex-shrink-0" />
+                <span className="text-sm sm:text-base">Bot and Tor network detection</span>
               </div>
-              <div className="flex items-center gap-3 text-white/80">
-                <Calendar className="w-5 h-5 text-yellow-400" />
-                <span>Free & no API key required</span>
+              <div className="flex items-center gap-3 text-gray-700">
+                <Calendar className="w-5 h-5 text-orange-600 flex-shrink-0" />
+                <span className="text-sm sm:text-base">Free & no API key required</span>
               </div>
             </div>
             
-            <div className="flex items-center gap-2 text-amber-400 group-hover:text-amber-300 transition-colors">
+            <div className="flex items-center justify-center gap-2 text-orange-600 group-hover:text-orange-700 transition-colors font-medium">
               <span>Start Fraud Detection</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </div>
           </Link>
 
-          {/* Diary Card */}
-          <Link 
-            to="/diary"
-            className="glass-effect rounded-2xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-300 cursor-pointer group block"
-          >
-            <div className="flex items-center gap-4 mb-6">
-              <div className="p-3 bg-[#0086FF]/20 rounded-xl">
-                <BookOpen className="w-8 h-8 text-[#0086FF]" />
+        </div>
+
+        {/* Benefits Section */}
+        <div className="mb-16 sm:mb-20">
+          <div className="text-center mb-12">
+            <span className="inline-block text-sm font-semibold text-orange-600 uppercase tracking-wider mb-3">
+              Benefits
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900">
+              Super-charge your proxy operations with our proxy network
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
+            {/* Reliable Infrastructure Card */}
+            <div className="bg-gray-50 rounded-2xl p-6 sm:p-8 border border-gray-200">
+              <div className="flex items-center gap-2 mb-4">
+                <div className="px-3 py-1.5 border border-gray-300 rounded-full flex items-center gap-2 text-xs sm:text-sm font-medium text-gray-700">
+                  <Zap className="w-4 h-4" />
+                  <span>Guaranteed Uptime</span>
+                </div>
               </div>
-              <h2 className="text-2xl font-bold text-white">Personal Diary</h2>
+              
+              <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
+                Reliable Infrastructure
+              </h3>
+              
+              <p className="text-gray-600 mb-6 leading-relaxed text-sm sm:text-base">
+                Global datacenters across Europe, North America, and Asia guarantee 99% uptime and the fastest response times for any proxy IP.
+              </p>
+              
+              <div className="bg-white rounded-xl p-4 border border-gray-200">
+                <div className="text-sm text-gray-600 mb-2">Worldwide IPs</div>
+                <div className="text-3xl font-bold text-gray-900 mb-2">10,510,214</div>
+                <div className="w-full bg-gray-200 rounded-full h-2">
+                  <div className="bg-green-500 h-2 rounded-full" style={{ width: '85%' }}></div>
+                </div>
+              </div>
             </div>
-            
-            <p className="text-white/70 mb-6 leading-relaxed">
-              Capture your thoughts, memories, and experiences in a beautiful, 
-              feature-rich diary. Organize, search, and cherish your personal moments.
-            </p>
-            
-            <div className="space-y-3 mb-6">
-              <div className="flex items-center gap-3 text-white/80">
-                <BookOpen className="w-5 h-5 text-[#0086FF]" />
-                <span>Rich text entries with categories</span>
+
+            {/* Proxy Solutions Card */}
+            <div className="bg-gray-50 rounded-2xl p-6 sm:p-8 border border-gray-200">
+              <div className="flex items-center gap-2 mb-4">
+                <div className="px-3 py-1.5 border border-gray-300 rounded-full flex items-center gap-2 text-xs sm:text-sm font-medium text-gray-700">
+                  <HelpCircle className="w-4 h-4" />
+                  <span>Powerful Network</span>
+                </div>
               </div>
-              <div className="flex items-center gap-3 text-white/80">
-                <Search className="w-5 h-5 text-[#0086FF]" />
-                <span>Advanced search and filtering</span>
-              </div>
-              <div className="flex items-center gap-3 text-white/80">
-                <Calendar className="w-5 h-5 text-green-400" />
-                <span>Date-based organization</span>
-              </div>
-              <div className="flex items-center gap-3 text-white/80">
-                <Heart className="w-5 h-5 text-pink-400" />
-                <span>Favorites and mood tracking</span>
+              
+              <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
+                Proxy solutions you can rely on
+              </h3>
+              
+              <p className="text-gray-600 mb-6 leading-relaxed text-sm sm:text-base">
+                Choose from our range of proxy products that best suit your use case. Unsure which one to select? No worries — contact sales team.
+              </p>
+              
+              <div className="bg-white rounded-xl p-4 border border-gray-200">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="grid grid-cols-5 gap-2 flex-1">
+                    <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
+                      <Lock className="w-5 h-5 text-gray-600" />
+                    </div>
+                    <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
+                      <Globe className="w-5 h-5 text-gray-600" />
+                    </div>
+                    <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
+                      <Zap className="w-5 h-5 text-gray-600" />
+                    </div>
+                    <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
+                      <Shield className="w-5 h-5 text-gray-600" />
+                    </div>
+                    <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
+                      <Search className="w-5 h-5 text-gray-600" />
+                    </div>
+                  </div>
+                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                    <Shield className="w-6 h-6 text-blue-600" />
+                  </div>
+                </div>
               </div>
             </div>
-            
-            <div className="flex items-center gap-2 text-[#0086FF] group-hover:text-blue-400 transition-colors">
-              <span>Start Your Diary</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </div>
-          </Link>
+          </div>
         </div>
 
         {/* Features Overview */}
-        <div className="glass-effect rounded-2xl p-8 shadow-2xl">
-          <h3 className="text-2xl font-bold text-white mb-6 text-center">Why Choose Our Platform?</h3>
+        <div className="bg-gray-50 rounded-2xl p-6 sm:p-8 border border-gray-200">
+          <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8 sm:mb-12 text-center">
+            Why Choose Our Platform?
+          </h3>
           
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
             <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-[#0086FF] to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Shield className="w-8 h-8 text-white" />
               </div>
-              <h4 className="text-lg font-semibold text-white mb-2">Privacy First</h4>
-              <p className="text-white/70 text-sm">
+              <h4 className="text-lg font-semibold text-gray-900 mb-2">Privacy First</h4>
+              <p className="text-gray-600 text-sm sm:text-base">
                 All your data is stored locally in your browser. No cloud storage, no data collection.
               </p>
             </div>
             
             <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-[#0086FF] rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Search className="w-8 h-8 text-white" />
               </div>
-              <h4 className="text-lg font-semibold text-white mb-2">Powerful Search</h4>
-              <p className="text-white/70 text-sm">
+              <h4 className="text-lg font-semibold text-gray-900 mb-2">Powerful Search</h4>
+              <p className="text-gray-600 text-sm sm:text-base">
                 Find anything instantly with our advanced search and filtering capabilities.
               </p>
             </div>
             
             <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-[#0086FF] to-blue-400 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Heart className="w-8 h-8 text-white" />
+              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Zap className="w-8 h-8 text-white" />
               </div>
-              <h4 className="text-lg font-semibold text-white mb-2">Personal Touch</h4>
-              <p className="text-white/70 text-sm">
-                Track your mood, categorize entries, and create a truly personal digital space.
+              <h4 className="text-lg font-semibold text-gray-900 mb-2">Fast & Reliable</h4>
+              <p className="text-gray-600 text-sm sm:text-base">
+                Lightning-fast proxy checking and fraud detection with reliable infrastructure.
               </p>
             </div>
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

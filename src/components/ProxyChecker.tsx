@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Copy, Globe, MapPin, Shield, Wifi, CheckCircle, AlertCircle, Loader2, Calendar } from 'lucide-react'
 import FraudDetection from './FraudDetection'
+import Footer from './Footer'
 
 interface ProxyConfig {
   host: string
@@ -141,41 +142,41 @@ ${ipInfo.readme ? `Readme: ${ipInfo.readme}` : ''}`
   }
 
   return (
-    <div className="min-h-screen gradient-bg flex items-center justify-center p-4">
-      <div className="w-full max-w-4xl">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 animate-fade-in">
+    <div className="min-h-screen bg-white" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(0,0,0,0.03) 1px, transparent 0)', backgroundSize: '20px 20px' }}>
+      <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 pt-24">
+        <div className="text-center mb-8 sm:mb-12">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Proxy IP Checker
           </h1>
-          <p className="text-xl text-white/80 animate-fade-in">
+          <p className="text-lg sm:text-xl text-gray-600">
             Check your IP information through a proxy server
           </p>
         </div>
 
-        <div className="glass-effect rounded-2xl p-8 shadow-2xl animate-slide-up">
+        <div className="bg-gray-50 rounded-2xl p-6 sm:p-8 border border-gray-200 shadow-lg">
           {/* Bulk Input Section */}
           <div className="mb-8">
-            <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
-              <Copy className="w-6 h-6" />
+            <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+              <Copy className="w-5 h-5 sm:w-6 sm:h-6" />
               Quick Setup
             </h2>
-            <div className="bg-black/20 rounded-lg p-4">
-              <label className="block text-sm font-medium text-white/90 mb-2">
+            <div className="bg-white rounded-lg p-4 border border-gray-200">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
                 Paste proxy info (host:port:username:password)
               </label>
               <input
                 type="text"
                 value={bulkInput}
                 onChange={(e) => handleBulkInputChange(e.target.value)}
-                className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#0086FF] focus:border-transparent transition-all"
+                className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-300 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                 placeholder="65.195.110.27:50100:CYNrVp0D:YDXTI2Roaq"
               />
               <div className="flex items-center justify-between mt-2">
-                <p className="text-xs text-white/60">
+                <p className="text-xs text-gray-500">
                   Format: host:port:username:password
                 </p>
                 {bulkInput && bulkInput.split(':').length === 4 && (
-                  <div className="flex items-center gap-1 text-green-400 text-xs">
+                  <div className="flex items-center gap-1 text-green-600 text-xs">
                     <CheckCircle className="w-3 h-3" />
                     Parsed successfully
                   </div>
@@ -184,63 +185,63 @@ ${ipInfo.readme ? `Readme: ${ipInfo.readme}` : ''}`
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
             {/* Input Form */}
             <div className="space-y-6">
-              <h2 className="text-2xl font-semibold text-white mb-6 flex items-center gap-2">
-                <Shield className="w-6 h-6" />
+              <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-6 flex items-center gap-2">
+                <Shield className="w-5 h-5 sm:w-6 sm:h-6" />
                 Proxy Configuration
               </h2>
               
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-white/90 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
                     Host
                   </label>
                   <input
                     type="text"
                     value={config.host}
                     onChange={(e) => setConfig({...config, host: e.target.value})}
-                    className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#0086FF] focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 rounded-lg bg-white border border-gray-300 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                     placeholder="65.195.110.27"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-white/90 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
                     Port
                   </label>
                   <input
                     type="text"
                     value={config.port}
                     onChange={(e) => setConfig({...config, port: e.target.value})}
-                    className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#0086FF] focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 rounded-lg bg-white border border-gray-300 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                     placeholder="50100"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-white/90 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
                     Username
                   </label>
                   <input
                     type="text"
                     value={config.username}
                     onChange={(e) => setConfig({...config, username: e.target.value})}
-                    className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#0086FF] focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 rounded-lg bg-white border border-gray-300 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                     placeholder="CYNrVp0D"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-white/90 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
                     Password
                   </label>
                   <input
                     type="password"
                     value={config.password}
                     onChange={(e) => setConfig({...config, password: e.target.value})}
-                    className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#0086FF] focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 rounded-lg bg-white border border-gray-300 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                     placeholder="YDXTI2Roaq"
                   />
                 </div>
@@ -250,7 +251,7 @@ ${ipInfo.readme ? `Readme: ${ipInfo.readme}` : ''}`
                 <button
                   onClick={checkIP}
                   disabled={loading}
-                  className="flex-1 bg-gradient-to-r from-[#0086FF] to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
+                  className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   {loading ? (
                     <>
@@ -267,7 +268,7 @@ ${ipInfo.readme ? `Readme: ${ipInfo.readme}` : ''}`
                 
                 <button
                   onClick={clearAll}
-                  className="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200 flex items-center justify-center gap-2"
+                  className="bg-gray-500 hover:bg-gray-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200 flex items-center justify-center gap-2"
                 >
                   Clear
                 </button>
@@ -276,18 +277,18 @@ ${ipInfo.readme ? `Readme: ${ipInfo.readme}` : ''}`
 
             {/* Results and Curl Command */}
             <div className="space-y-6">
-              <h2 className="text-2xl font-semibold text-white mb-6 flex items-center gap-2">
-                <Globe className="w-6 h-6" />
+              <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-6 flex items-center gap-2">
+                <Globe className="w-5 h-5 sm:w-6 sm:h-6" />
                 Results & Command
               </h2>
 
               {/* Curl Command */}
-              <div className="bg-black/20 rounded-lg p-4">
+              <div className="bg-white rounded-lg p-4 border border-gray-200">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm font-medium text-white/90">Generated cURL Command:</span>
+                  <span className="text-sm font-medium text-gray-700">Generated cURL Command:</span>
                   <button
                     onClick={copyToClipboard}
-                    className="flex items-center gap-1 text-[#0086FF] hover:text-blue-400 transition-colors text-sm"
+                    className="flex items-center gap-1 text-blue-600 hover:text-blue-700 transition-colors text-sm"
                   >
                     {copied ? (
                       <>
@@ -302,30 +303,30 @@ ${ipInfo.readme ? `Readme: ${ipInfo.readme}` : ''}`
                     )}
                   </button>
                 </div>
-                <code className="text-green-400 text-sm break-all">
+                <code className="text-green-600 text-sm break-all font-mono">
                   {generateCurlCommand()}
                 </code>
               </div>
 
               {/* Error Display */}
               {error && (
-                <div className="bg-red-500/20 border border-red-500/50 rounded-lg p-4 flex items-center gap-2">
-                  <AlertCircle className="w-5 h-5 text-red-400" />
-                  <span className="text-red-300">{error}</span>
+                <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-center gap-2">
+                  <AlertCircle className="w-5 h-5 text-red-600" />
+                  <span className="text-red-700">{error}</span>
                 </div>
               )}
 
               {/* IP Info Results */}
               {ipInfo && (
-                <div className="bg-green-500/20 border border-green-500/50 rounded-lg p-6 animate-slide-up">
+                <div className="bg-green-50 border border-green-200 rounded-lg p-6">
                   <div className="flex items-center justify-between mb-6">
                     <div className="flex items-center gap-2">
-                      <CheckCircle className="w-6 h-6 text-green-400" />
-                      <h3 className="text-lg font-semibold text-white">IP Information Retrieved</h3>
+                      <CheckCircle className="w-6 h-6 text-green-600" />
+                      <h3 className="text-lg font-semibold text-gray-900">IP Information Retrieved</h3>
                     </div>
                     <button
                       onClick={copyIpResults}
-                      className="flex items-center gap-2 bg-[#0086FF] hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-all duration-200 text-sm"
+                      className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-all duration-200 text-sm"
                     >
                       {ipResultsCopied ? (
                         <>
@@ -343,76 +344,76 @@ ${ipInfo.readme ? `Readme: ${ipInfo.readme}` : ''}`
                   
                   <div className="space-y-4">
                     {/* IP Address - Most prominent */}
-                    <div className="bg-white/10 rounded-lg p-4">
+                    <div className="bg-white rounded-lg p-4 border border-gray-200">
                       <div className="flex items-center gap-2 mb-2">
-                        <Globe className="w-5 h-5 text-[#0086FF]" />
-                        <span className="text-white font-semibold">IP Address</span>
+                        <Globe className="w-5 h-5 text-blue-600" />
+                        <span className="text-gray-900 font-semibold">IP Address</span>
                       </div>
-                      <div className="text-white font-mono text-xl">{ipInfo.ip}</div>
+                      <div className="text-gray-900 font-mono text-xl">{ipInfo.ip}</div>
                     </div>
 
                     {/* Hostname if available */}
                     {ipInfo.hostname && (
-                      <div className="bg-white/5 rounded-lg p-4">
+                      <div className="bg-white rounded-lg p-4 border border-gray-200">
                         <div className="flex items-center gap-2 mb-2">
-                          <Globe className="w-4 h-4 text-cyan-400" />
-                          <span className="text-white/90 font-medium">Hostname</span>
+                          <Globe className="w-4 h-4 text-cyan-600" />
+                          <span className="text-gray-700 font-medium">Hostname</span>
                         </div>
-                        <div className="text-white font-mono text-sm">{ipInfo.hostname}</div>
+                        <div className="text-gray-900 font-mono text-sm">{ipInfo.hostname}</div>
                       </div>
                     )}
 
                     {/* Location */}
-                    <div className="bg-white/5 rounded-lg p-4">
+                    <div className="bg-white rounded-lg p-4 border border-gray-200">
                       <div className="flex items-center gap-2 mb-2">
-                        <MapPin className="w-4 h-4 text-blue-400" />
-                        <span className="text-white/90 font-medium">Location</span>
+                        <MapPin className="w-4 h-4 text-blue-600" />
+                        <span className="text-gray-700 font-medium">Location</span>
                       </div>
-                      <div className="text-white">{ipInfo.city}, {ipInfo.region}, {ipInfo.country}</div>
+                      <div className="text-gray-900">{ipInfo.city}, {ipInfo.region}, {ipInfo.country}</div>
                       {ipInfo.postal && (
-                        <div className="text-white/70 text-sm mt-1">Postal Code: {ipInfo.postal}</div>
+                        <div className="text-gray-600 text-sm mt-1">Postal Code: {ipInfo.postal}</div>
                       )}
                     </div>
 
                     {/* Organization */}
-                    <div className="bg-white/5 rounded-lg p-4">
+                    <div className="bg-white rounded-lg p-4 border border-gray-200">
                       <div className="flex items-center gap-2 mb-2">
-                        <Shield className="w-4 h-4 text-[#0086FF]" />
-                        <span className="text-white/90 font-medium">Organization</span>
+                        <Shield className="w-4 h-4 text-blue-600" />
+                        <span className="text-gray-700 font-medium">Organization</span>
                       </div>
-                      <div className="text-white text-sm">{ipInfo.org}</div>
+                      <div className="text-gray-900 text-sm">{ipInfo.org}</div>
                     </div>
 
                     {/* Coordinates */}
-                    <div className="bg-white/5 rounded-lg p-4">
+                    <div className="bg-white rounded-lg p-4 border border-gray-200">
                       <div className="flex items-center gap-2 mb-2">
-                        <MapPin className="w-4 h-4 text-amber-400" />
-                        <span className="text-white/90 font-medium">Coordinates</span>
+                        <MapPin className="w-4 h-4 text-amber-600" />
+                        <span className="text-gray-700 font-medium">Coordinates</span>
                       </div>
-                      <div className="text-white font-mono text-sm">{ipInfo.loc}</div>
+                      <div className="text-gray-900 font-mono text-sm">{ipInfo.loc}</div>
                     </div>
 
                     {/* Timezone */}
-                    <div className="bg-white/5 rounded-lg p-4">
+                    <div className="bg-white rounded-lg p-4 border border-gray-200">
                       <div className="flex items-center gap-2 mb-2">
-                        <Calendar className="w-4 h-4 text-yellow-400" />
-                        <span className="text-white/90 font-medium">Timezone</span>
+                        <Calendar className="w-4 h-4 text-yellow-600" />
+                        <span className="text-gray-700 font-medium">Timezone</span>
                       </div>
-                      <div className="text-white text-sm">{ipInfo.timezone}</div>
+                      <div className="text-gray-900 text-sm">{ipInfo.timezone}</div>
                     </div>
 
                     {/* Readme link if available */}
                     {ipInfo.readme && (
-                      <div className="bg-white/5 rounded-lg p-4">
+                      <div className="bg-white rounded-lg p-4 border border-gray-200">
                         <div className="flex items-center gap-2 mb-2">
-                          <AlertCircle className="w-4 h-4 text-[#0086FF]" />
-                          <span className="text-white/90 font-medium">Additional Info</span>
+                          <AlertCircle className="w-4 h-4 text-blue-600" />
+                          <span className="text-gray-700 font-medium">Additional Info</span>
                         </div>
                         <a 
                           href={ipInfo.readme} 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="text-[#0086FF] hover:text-blue-400 text-sm underline"
+                          className="text-blue-600 hover:text-blue-700 text-sm underline"
                         >
                           {ipInfo.readme}
                         </a>
@@ -438,6 +439,7 @@ ${ipInfo.readme ? `Readme: ${ipInfo.readme}` : ''}`
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }
