@@ -85,9 +85,18 @@ const ProxyTool = () => {
 
     try {
       // Use environment variable if set, otherwise use relative URL (works on Vercel)
-      // or fallback to localhost for development
-      const apiUrl = import.meta.env.VITE_API_URL || 
-        (import.meta.env.PROD ? '' : 'http://localhost:3001')
+      // In development, use localhost, in production use relative URL
+      let apiUrl = import.meta.env.VITE_API_URL
+      
+      if (!apiUrl) {
+        // Check if we're in development mode
+        if (import.meta.env.DEV || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+          apiUrl = 'http://localhost:3001'
+        } else {
+          // Production - use relative URL
+          apiUrl = ''
+        }
+      }
       
       const response = await fetch(`${apiUrl}/api/check-proxy`, {
         method: 'POST',

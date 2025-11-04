@@ -68,6 +68,8 @@ The built files will be in the `dist` directory.
 ## Project Structure
 
 ```
+├── api/
+│   └── check-proxy.js        # Vercel serverless function
 ├── src/
 │   ├── components/
 │   │   ├── Layout.tsx        # Main layout with navigation
@@ -77,16 +79,37 @@ The built files will be in the `dist` directory.
 │   ├── App.tsx               # Router configuration
 │   ├── main.tsx              # Entry point
 │   └── index.css             # Global styles
-├── server.js                 # Backend API server
+├── server.js                 # Backend API server (local dev only)
+├── vercel.json               # Vercel configuration
 └── package.json
 ```
 
 ## Backend API
 
+### Local Development
+
 The backend server runs on `http://localhost:3001` by default and provides:
 
 - `POST /api/check-proxy` - Checks proxy connectivity and returns proxy information
 - `GET /health` - Health check endpoint
+
+To run locally:
+```bash
+npm run server
+```
+
+### Vercel Deployment
+
+The project is configured to work on Vercel with serverless functions. The API endpoint is automatically available at `/api/check-proxy` when deployed.
+
+**Deployment Steps:**
+1. Push your code to GitHub
+2. Import the project on Vercel
+3. Vercel will automatically detect the Vite configuration
+4. The API function in `api/check-proxy.js` will be deployed as a serverless function
+5. No additional configuration needed - the frontend will automatically use the correct API URL
+
+**Note:** The `server.js` file is for local development only. On Vercel, the `api/check-proxy.js` serverless function handles the backend requests.
 
 ## License
 
