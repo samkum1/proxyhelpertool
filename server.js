@@ -1,7 +1,9 @@
 import express from 'express'
 import cors from 'cors'
-import { HttpsProxyAgent } from 'https-proxy-agent'
-import fetch from 'node-fetch'
+import { exec } from 'child_process'
+import { promisify } from 'util'
+
+const execAsync = promisify(exec)
 
 const app = express()
 const PORT = process.env.PORT || 3001
@@ -9,40 +11,73 @@ const PORT = process.env.PORT || 3001
 app.use(cors())
 app.use(express.json())
 
+app.options('/api/check-proxy', (req, res) => {
+  res.status(200).end()
+})
+
 app.post('/api/check-proxy', async (req, res) => {
   try {
-    const { proxy, targetUrl } = req.body
+    const { host, port, username, password } = req.body
 
-    if (!proxy || !proxy.host || !proxy.port || !proxy.username || !proxy.password) {
-      return res.status(400).json({ 
-        message: 'Missing proxy configuration. Please provide host, port, username, and password.' 
-      })
+    if (!host || !port || !username || !password) {
+      return res.status(400).json({ error: 'Missing required fields' })
     }
 
-    if (!targetUrl) {
-      return res.status(400).json({ 
-        message: 'Missing target URL' 
-      })
-    }
+    // Construct the curl command
+    const curlCommand = `curl -x ${host}:${port} -U ${username}:${password} ipinfo.io`
+    
+    console.log('Executing curl command:', curlCommand)
 
-    const proxyUrl = `http://${proxy.username}:${proxy.password}@${proxy.host}:${proxy.port}`
-    const agent = new HttpsProxyAgent(proxyUrl)
-
-    const response = await fetch(targetUrl, {
-      agent,
-      timeout: 10000, // 10 second timeout
+    // Execute the curl command
+    const { stdout, stderr } = await execAsync(curlCommand, {
+      timeout: 30000, // 30 second timeout
     })
 
-    if (!response.ok) {
-      throw new Error(`Proxy request failed: ${response.status} ${response.statusText}`)
+    if (stderr) {
+      console.error('Curl stderr:', stderr)
     }
 
-    const data = await response.json()
-    res.json(data)
+    // Parse the JSON response from ipinfo.io
+    let ipInfo
+    try {
+      ipInfo = JSON.parse(stdout)
+    } catch (parseError) {
+      console.error('Failed to parse JSON response:', parseError)
+      console.error('Raw response:', stdout)
+      return res.status(500).json({ 
+        error: 'Failed to parse response from ipinfo.io',
+        details: stdout
+      })
+    }
+
+    // Return the IP information
+    res.status(200).json(ipInfo)
+
   } catch (error) {
-    console.error('Proxy check error:', error)
-    res.status(500).json({ 
-      message: error.message || 'Failed to check proxy. Please verify your proxy credentials and try again.' 
+    console.error('Error executing curl:', error)
+    
+    // Handle different types of errors
+    if (error.code === 'ECONNREFUSED') {
+      return res.status(500).json({ 
+        error: 'Connection refused. Please check your proxy settings.' 
+      })
+    }
+    
+    if (error.code === 'ETIMEDOUT') {
+      return res.status(500).json({ 
+        error: 'Connection timeout. The proxy server may be slow or unreachable.' 
+      })
+    }
+    
+    if (error.signal === 'SIGTERM') {
+      return res.status(500).json({ 
+        error: 'Request timeout. Please try again.' 
+      })
+    }
+
+    return res.status(500).json({ 
+      error: 'Failed to check IP information',
+      details: error.message 
     })
   }
 })

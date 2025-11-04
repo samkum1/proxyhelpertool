@@ -94,19 +94,16 @@ const ProxyTool = () => {
           'Accept': 'application/json',
         },
         body: JSON.stringify({
-          proxy: {
-            host,
-            port,
-            username,
-            password,
-          },
-          targetUrl: 'https://ipinfo.io/json',
+          host,
+          port,
+          username,
+          password,
         }),
       })
 
       if (!response.ok) {
-        const errorData = await response.json().catch(() => ({ message: response.statusText }))
-        throw new Error(errorData.message || `Failed to check proxy: ${response.statusText}`)
+        const errorData = await response.json().catch(() => ({ error: response.statusText }))
+        throw new Error(errorData.error || errorData.details || `Failed to check proxy: ${response.statusText}`)
       }
 
       const data: IpInfoResponse = await response.json()
