@@ -84,9 +84,7 @@ const ProxyTool = () => {
     setProxyResult(null)
 
     try {
-      // Since browsers don't support proxy configuration in fetch API,
-      // we need to use a backend service that accepts proxy details
-      // and makes the request through the proxy
+
       const backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001'
       
       const response = await fetch(`${backendUrl}/api/check-proxy`, {
