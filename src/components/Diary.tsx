@@ -299,7 +299,7 @@ export default function Diary() {
                     type="text"
                     value={formData.title}
                     onChange={(e) => setFormData({...formData, title: e.target.value})}
-                    className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#0086FF] focus:border-transparent transition-all"
                     placeholder="What's on your mind?"
                     required
                   />
@@ -312,7 +312,7 @@ export default function Diary() {
                   <textarea
                     value={formData.description}
                     onChange={(e) => setFormData({...formData, description: e.target.value})}
-                    className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all resize-none"
+                    className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#0086FF] focus:border-transparent transition-all resize-none"
                     placeholder="Tell me more about it..."
                     rows={4}
                     required
@@ -327,7 +327,7 @@ export default function Diary() {
                     <button
                       type="button"
                       onClick={() => setShowCategoryManager(!showCategoryManager)}
-                      className="text-blue-400 hover:text-blue-300 text-sm flex items-center gap-1"
+                      className="text-[#0086FF] hover:text-blue-400 text-sm flex items-center gap-1"
                     >
                       <Settings className="w-4 h-4" />
                       Manage
@@ -336,7 +336,7 @@ export default function Diary() {
                   <select
                     value={formData.category}
                     onChange={(e) => setFormData({...formData, category: e.target.value})}
-                    className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-[#0086FF] focus:border-transparent transition-all"
                   >
                     <option value="">Select category</option>
                     {categories.map(cat => (
@@ -353,7 +353,7 @@ export default function Diary() {
                     type="text"
                     value={formData.tags}
                     onChange={(e) => setFormData({...formData, tags: e.target.value})}
-                    className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#0086FF] focus:border-transparent transition-all"
                     placeholder="proxy, server, test"
                   />
                 </div>
@@ -361,7 +361,7 @@ export default function Diary() {
                 <div className="flex gap-3">
                   <button
                     type="submit"
-                    className="flex-1 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 flex items-center justify-center gap-2"
+                    className="flex-1 bg-gradient-to-r from-[#0086FF] to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 flex items-center justify-center gap-2"
                   >
                     <Edit3 className="w-5 h-5" />
                     {isEditing ? 'Update' : 'Save'}
@@ -394,7 +394,7 @@ export default function Diary() {
                         type="text"
                         value={newCategory}
                         onChange={(e) => setNewCategory(e.target.value)}
-                        className="flex-1 px-3 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        className="flex-1 px-3 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#0086FF]"
                         placeholder="Add new category"
                         onKeyPress={(e) => e.key === 'Enter' && handleAddCategory()}
                       />
@@ -418,7 +418,7 @@ export default function Diary() {
                               type="text"
                               value={editingCategoryName}
                               onChange={(e) => setEditingCategoryName(e.target.value)}
-                              className="flex-1 px-2 py-1 rounded bg-white/10 border border-white/20 text-white text-sm focus:outline-none focus:ring-1 focus:ring-blue-400"
+                              className="flex-1 px-2 py-1 rounded bg-white/10 border border-white/20 text-white text-sm focus:outline-none focus:ring-1 focus:ring-[#0086FF]"
                               onKeyPress={(e) => e.key === 'Enter' && handleSaveCategoryEdit()}
                             />
                             <button
@@ -439,7 +439,7 @@ export default function Diary() {
                             <span className="flex-1 text-white">{category}</span>
                             <button
                               onClick={() => handleEditCategory(category)}
-                              className="p-1 text-blue-400 hover:text-blue-300"
+                              className="p-1 text-[#0086FF] hover:text-blue-400"
                             >
                               <Edit3 className="w-4 h-4" />
                             </button>
@@ -471,7 +471,7 @@ export default function Diary() {
                       type="text"
                       value={filters.search}
                       onChange={(e) => setFilters({...filters, search: e.target.value})}
-                      className="w-full pl-10 pr-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all"
+                      className="w-full pl-10 pr-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#0086FF] focus:border-transparent transition-all"
                       placeholder="Search entries..."
                     />
                   </div>
@@ -494,7 +494,7 @@ export default function Diary() {
                         <select
                           value={filters.category}
                           onChange={(e) => setFilters({...filters, category: e.target.value})}
-                          className="w-full px-3 py-2 rounded-lg bg-white/10 border border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
+                          className="w-full px-3 py-2 rounded-lg bg-white/10 border border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-[#0086FF]"
                         >
                           <option value="">All categories</option>
                           {categories.map(cat => (
@@ -510,7 +510,7 @@ export default function Diary() {
                           type="date"
                           value={filters.dateFrom}
                           onChange={(e) => setFilters({...filters, dateFrom: e.target.value})}
-                          className="w-full px-3 py-2 rounded-lg bg-white/10 border border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
+                          className="w-full px-3 py-2 rounded-lg bg-white/10 border border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-[#0086FF]"
                         />
                       </div>
 
@@ -520,7 +520,7 @@ export default function Diary() {
                           type="date"
                           value={filters.dateTo}
                           onChange={(e) => setFilters({...filters, dateTo: e.target.value})}
-                          className="w-full px-3 py-2 rounded-lg bg-white/10 border border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
+                          className="w-full px-3 py-2 rounded-lg bg-white/10 border border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-[#0086FF]"
                         />
                       </div>
 
@@ -549,7 +549,7 @@ export default function Diary() {
                     Export
                   </button>
                   
-                  <label className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-all duration-200 flex items-center gap-2 cursor-pointer">
+                  <label className="bg-[#0086FF] hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-all duration-200 flex items-center gap-2 cursor-pointer">
                     <Upload className="w-4 h-4" />
                     Import
                     <input
@@ -591,7 +591,7 @@ export default function Diary() {
                               {entry.createdAt.toLocaleDateString()}
                             </span>
                             {entry.category && (
-                              <span className="bg-blue-500/20 text-blue-300 px-2 py-1 rounded-full text-xs">
+                              <span className="bg-[#0086FF]/20 text-[#0086FF] px-2 py-1 rounded-full text-xs">
                                 {entry.category}
                               </span>
                             )}
@@ -665,7 +665,7 @@ export default function Diary() {
                           onClick={() => goToPage(page)}
                           className={`px-3 py-2 rounded-lg text-sm transition-all ${
                             page === pagination.currentPage
-                              ? 'bg-blue-500 text-white'
+                              ? 'bg-[#0086FF] text-white'
                               : 'bg-white/10 hover:bg-white/20 text-white/80'
                           }`}
                         >

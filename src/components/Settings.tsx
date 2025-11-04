@@ -89,7 +89,7 @@ export default function Settings({ onClose }: SettingsProps) {
                 type={showApiKey ? 'text' : 'password'}
                 value={apiKey}
                 onChange={(e) => setApiKey(e.target.value)}
-                className="w-full px-4 py-3 pr-12 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all"
+                className="w-full px-4 py-3 pr-12 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#0086FF] focus:border-transparent transition-all"
                 placeholder="Enter your Spur.us API key"
               />
               <button
@@ -101,7 +101,7 @@ export default function Settings({ onClose }: SettingsProps) {
               </button>
             </div>
             <p className="text-xs text-white/60 mt-1">
-              Get your API key from <a href="https://spur.us" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">spur.us</a>
+              Get your API key from <a href="https://spur.us" target="_blank" rel="noopener noreferrer" className="text-[#0086FF] hover:text-blue-400 underline">spur.us</a>
             </p>
           </div>
 
@@ -124,7 +124,7 @@ export default function Settings({ onClose }: SettingsProps) {
           <div className="flex gap-3">
             <button
               onClick={handleSave}
-              className="flex-1 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 flex items-center justify-center gap-2"
+              className="flex-1 bg-gradient-to-r from-[#0086FF] to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 flex items-center justify-center gap-2"
             >
               <Save className="w-4 h-4" />
               Save Settings
@@ -138,8 +138,8 @@ export default function Settings({ onClose }: SettingsProps) {
             </button>
           </div>
 
-          <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
-            <h3 className="text-sm font-semibold text-blue-300 mb-2">How to get your API key:</h3>
+          <div className="bg-[#0086FF]/10 border border-[#0086FF]/30 rounded-lg p-4">
+            <h3 className="text-sm font-semibold text-[#0086FF] mb-2">How to get your API key:</h3>
             <ol className="text-xs text-blue-200 space-y-1">
               <li>1. Visit <a href="https://spur.us" target="_blank" rel="noopener noreferrer" className="underline">spur.us</a></li>
               <li>2. Sign up for an account</li>

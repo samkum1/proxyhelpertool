@@ -142,7 +142,7 @@ Analysis Time: ${new Date(analysis.analysis_timestamp).toLocaleString()}`
             <button
               onClick={checkFraud}
               disabled={loading || !(allowEdit ? inputIp : ipAddress).trim()}
-              className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 disabled:transform-none flex items-center justify-center gap-2"
+              className="bg-gradient-to-r from-[#0086FF] to-blue-600 hover:from-blue-600 hover:to-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 disabled:transform-none flex items-center justify-center gap-2"
             >
               {loading ? (
                 <>
@@ -191,7 +191,7 @@ Analysis Time: ${new Date(analysis.analysis_timestamp).toLocaleString()}`
               </button>
               <button
                 onClick={copyAnalysis}
-                className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-all duration-200 text-sm"
+                className="flex items-center gap-2 bg-[#0086FF] hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-all duration-200 text-sm"
               >
                 {copied ? (
                   <>
@@ -239,7 +239,7 @@ Analysis Time: ${new Date(analysis.analysis_timestamp).toLocaleString()}`
             {/* Analysis Time */}
             <div className="bg-white/5 rounded-lg p-4 border border-white/10">
               <div className="flex items-center gap-2 mb-2">
-                <Globe className="w-4 h-4 text-blue-400" />
+                <Globe className="w-4 h-4 text-[#0086FF]" />
                 <span className="text-white font-medium">Analysis Time</span>
               </div>
               <div className="text-white text-sm">
@@ -271,8 +271,8 @@ Analysis Time: ${new Date(analysis.analysis_timestamp).toLocaleString()}`
 
               {/* Recommendations */}
               {analysis.recommendations.length > 0 && (
-                <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
-                  <h4 className="text-lg font-semibold text-blue-300 mb-3 flex items-center gap-2">
+                <div className="bg-[#0086FF]/10 border border-[#0086FF]/30 rounded-lg p-4">
+                  <h4 className="text-lg font-semibold text-[#0086FF] mb-3 flex items-center gap-2">
                     <Shield className="w-5 h-5" />
                     Recommendations
                   </h4>
