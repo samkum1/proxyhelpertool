@@ -137,12 +137,16 @@ export default function Home() {
           <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8 sm:mb-12 text-center">Why Choose Our Platform?</h3>
           <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
             <div className="text-center">
-              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4"><Shield className="w-8 h-8 text-white" /></div>
+              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <img src="/privacy.svg" alt="Privacy" className="w-8 h-8" />
+                </div>
               <h4 className="text-lg font-semibold text-gray-900 mb-2">Privacy First</h4>
               <p className="text-gray-600 text-sm sm:text-base">All your data is stored locally in your browser. No cloud storage, no data collection.</p>
             </div>
             <div className="text-center">
-              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4"><Search className="w-8 h-8 text-white" /></div>
+              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <img src="/search.svg" alt="Search" className="w-10 h-10" />
+                </div>
               <h4 className="text-lg font-semibold text-gray-900 mb-2">Powerful Search</h4>
               <p className="text-gray-600 text-sm sm:text-base">Find anything instantly with our advanced search and filtering capabilities.</p>
             </div>
