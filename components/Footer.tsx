@@ -1,5 +1,4 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { Globe, Shield, Zap } from 'lucide-react'
 
 export default function Footer() {
@@ -7,14 +6,9 @@ export default function Footer() {
     <footer className="bg-gray-50 border-t border-gray-200 mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-          {/* Company Info */}
           <div className="col-span-1 md:col-span-2">
             <div className="mb-4">
-              <img 
-                src="/lightning-proxies-logo.svg" 
-                alt="Lightning Proxies" 
-                className="h-8 w-auto mb-4"
-              />
+              <img src="/lightning-proxies-logo.svg" alt="Lightning Proxies" className="h-8 w-auto mb-4" />
             </div>
             <p className="text-gray-600 text-sm mb-4">
               Faster, Stronger, Reliable. Professional proxy tools and solutions for your business needs.
@@ -24,18 +18,17 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Tools */}
           <div>
             <h3 className="text-sm font-semibold text-gray-900 mb-4">Tools</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/proxy" className="text-gray-600 hover:text-gray-900 text-sm flex items-center gap-2">
+                <Link href="/proxy" className="text-gray-600 hover:text-gray-900 text-sm flex items-center gap-2">
                   <Globe className="w-4 h-4" />
                   Proxy Checker
                 </Link>
               </li>
               <li>
-                <Link to="/fraud" className="text-gray-600 hover:text-gray-900 text-sm flex items-center gap-2">
+                <Link href="/fraud" className="text-gray-600 hover:text-gray-900 text-sm flex items-center gap-2">
                   <Shield className="w-4 h-4" />
                   Fraud Detection
                 </Link>
@@ -43,7 +36,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Resources */}
           <div>
             <h3 className="text-sm font-semibold text-gray-900 mb-4">Resources</h3>
             <ul className="space-y-2">
@@ -84,4 +76,6 @@ export default function Footer() {
     </footer>
   )
 }
+
+
 

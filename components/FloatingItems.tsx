@@ -10,11 +10,8 @@ declare global {
 
 export default function FloatingItems() {
   useEffect(() => {
-    // Initialize Crisp chat (now marked as essential in Termly config)
     window.$crisp = [];
     window.CRISP_WEBSITE_ID = "f226ecbb-f148-41ab-b240-0b9c1016dba6";
-
-    // Load Crisp script
     const script = document.createElement("script");
     script.src = "https://client.crisp.chat/l.js";
     script.async = true;
@@ -38,3 +35,5 @@ export default function FloatingItems() {
     </>
   );
 }
+
+

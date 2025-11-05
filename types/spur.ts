@@ -21,20 +21,9 @@ export interface SpurContextResponse {
   confidence: number
   last_seen: string
   first_seen: string
-  reputation: {
-    score: number
-    factors: string[]
-  }
-  geolocation: {
-    latitude: number
-    longitude: number
-    accuracy: number
-  }
-  network_info: {
-    isp: string
-    asn_name: string
-    asn_country: string
-  }
+  reputation: { score: number; factors: string[] }
+  geolocation: { latitude: number; longitude: number; accuracy: number }
+  network_info: { isp: string; asn_name: string; asn_country: string }
 }
 
 export interface SpurFraudAnalysis {
@@ -53,3 +42,5 @@ export interface SpurConfig {
   base_url: string
   timeout: number
 }
+
+
