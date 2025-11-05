@@ -19,14 +19,15 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { host, port, username, password } = req.body
+    const { host, port, username, password, ipVersion } = req.body
 
     if (!host || !port || !username || !password) {
       return res.status(400).json({ error: 'Missing required fields' })
     }
 
     // Construct the curl command
-    const curlCommand = `curl -x ${host}:${port} -U ${username}:${password} ipinfo.io`
+    const targetHost = ipVersion === 'ipv6' ? 'v6.ipinfo.io' : 'ipinfo.io'
+    const curlCommand = `curl -x ${host}:${port} -U ${username}:${password} ${targetHost}`
     
     console.log('Executing curl command:', curlCommand)
 

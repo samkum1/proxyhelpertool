@@ -30,6 +30,7 @@ export default function ProxyChecker() {
     username: '',
     password: ''
   })
+  const [ipVersion, setIpVersion] = useState<'ipv4' | 'ipv6'>('ipv4')
   
   const [bulkInput, setBulkInput] = useState('')
   const [ipInfo, setIpInfo] = useState<IPInfo | null>(null)
@@ -39,7 +40,17 @@ export default function ProxyChecker() {
   const [ipResultsCopied, setIpResultsCopied] = useState(false)
 
   const generateCurlCommand = () => {
-    return `curl -x ${config.host}:${config.port} -U ${config.username}:${config.password} ipinfo.io`
+    const targetHost = ipVersion === 'ipv6' ? 'v6.ipinfo.io' : 'ipinfo.io'
+    return `curl -x ${config.host}:${config.port} -U ${config.username}:${config.password} ${targetHost}`
+  }
+
+  const detectIPVersion = (input: string) => {
+    // Check if input contains "v6" (case-insensitive)
+    if (input.toLowerCase().includes('v6')) {
+      setIpVersion('ipv6')
+    } else {
+      setIpVersion('ipv4')
+    }
   }
 
   const parseBulkInput = (input: string) => {
@@ -52,6 +63,8 @@ export default function ProxyChecker() {
         username: username.trim(),
         password: password.trim()
       })
+      // Auto-detect IP version from host
+      detectIPVersion(host)
       setError(null)
     } else {
       setError('Invalid format. Please use: host:port:username:password')
@@ -75,6 +88,7 @@ export default function ProxyChecker() {
     setBulkInput('')
     setIpInfo(null)
     setError(null)
+    setIpVersion('ipv4')
   }
 
   const copyToClipboard = async () => {
@@ -125,7 +139,7 @@ ${ipInfo.readme ? `Readme: ${ipInfo.readme}` : ''}`
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(config),
+        body: JSON.stringify({ ...config, ipVersion }),
       })
 
       if (!response.ok) {
@@ -142,7 +156,7 @@ ${ipInfo.readme ? `Readme: ${ipInfo.readme}` : ''}`
   }
 
   return (
-    <div className="min-h-screen bg-white" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(0,0,0,0.03) 1px, transparent 0)', backgroundSize: '20px 20px' }}>
+    <div className="min-h-screen bg-white bg-gradient-to-b from-[rgba(22,117,255,0.1)] to-transparent">
       <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 pt-24">
         <div className="text-center mb-8 sm:mb-12">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -196,12 +210,46 @@ ${ipInfo.readme ? `Readme: ${ipInfo.readme}` : ''}`
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Proxy IP version
+                  </label>
+                  <div className="flex gap-4 items-center">
+                    <label className="inline-flex items-center gap-2 text-sm text-gray-700">
+                      <input
+                        type="radio"
+                        name="ipVersion"
+                        value="ipv4"
+                        checked={ipVersion === 'ipv4'}
+                        onChange={() => setIpVersion('ipv4')}
+                        className="text-blue-600 focus:ring-blue-500"
+                      />
+                      IPv4 (default)
+                    </label>
+                    <label className="inline-flex items-center gap-2 text-sm text-gray-700">
+                      <input
+                        type="radio"
+                        name="ipVersion"
+                        value="ipv6"
+                        checked={ipVersion === 'ipv6'}
+                        onChange={() => setIpVersion('ipv6')}
+                        className="text-blue-600 focus:ring-blue-500"
+                      />
+                      IPv6
+                    </label>
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
                     Host
                   </label>
                   <input
                     type="text"
                     value={config.host}
-                    onChange={(e) => setConfig({...config, host: e.target.value})}
+                    onChange={(e) => {
+                      const newHost = e.target.value
+                      setConfig({...config, host: newHost})
+                      // Auto-detect IP version from host input
+                      detectIPVersion(newHost)
+                    }}
                     className="w-full px-4 py-3 rounded-lg bg-white border border-gray-300 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                     placeholder="65.195.110.27"
                   />

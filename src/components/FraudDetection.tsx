@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { 
-  Shield, 
-  AlertTriangle, 
-  CheckCircle, 
-  XCircle, 
-  Eye, 
+import {
+  Shield,
+  AlertTriangle,
+  CheckCircle,
+  XCircle,
+  Eye,
   EyeOff,
   Copy,
   Settings,
@@ -36,7 +36,7 @@ export default function FraudDetection({ ipAddress, onAnalysisComplete, allowEdi
 
   const checkFraud = async () => {
     const ipToCheck = allowEdit ? inputIp : ipAddress
-    
+
     if (!ipToCheck.trim()) {
       setError('Please enter a valid IP address')
       return

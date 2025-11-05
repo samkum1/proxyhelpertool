@@ -23,13 +23,13 @@ export default function ServiceStatus() {
   }, [])
 
   return (
-    <div className="glass-effect rounded-lg p-4 shadow-xl">
+    <div className="glass-effect rounded-lg p-4 border border-gray-200 shadow-sm">
       <div className="flex items-center justify-between mb-3">
-        <h3 className="text-sm font-semibold text-white">Free API Status</h3>
+        <h3 className="text-sm font-semibold text-black/60">Free API Status</h3>
         <button
           onClick={checkStatus}
           disabled={loading}
-          className="text-white/60 hover:text-white transition-colors p-1"
+          className="text-black/60 hover:text-white transition-colors p-1"
         >
           {loading ? (
             <Loader2 className="w-4 h-4 animate-spin" />
@@ -41,7 +41,7 @@ export default function ServiceStatus() {
       
       <div className="space-y-2">
         <div className="flex items-center justify-between text-sm">
-          <span className="text-white/80">GetIPIntel</span>
+          <span className="text-black/60">GetIPIntel</span>
           {status ? (
             <div className="flex items-center gap-1">
               {status.getIPIntel ? (
@@ -57,12 +57,12 @@ export default function ServiceStatus() {
               )}
             </div>
           ) : (
-            <Loader2 className="w-4 h-4 animate-spin text-white/60" />
+            <Loader2 className="w-4 h-4 animate-spin text-black/60" />
           )}
         </div>
         
         <div className="flex items-center justify-between text-sm">
-          <span className="text-white/80">IPinfo.io</span>
+          <span className="text-black/60">IPinfo.io</span>
           {status ? (
             <div className="flex items-center gap-1">
               {status.ipinfo ? (
@@ -78,13 +78,13 @@ export default function ServiceStatus() {
               )}
             </div>
           ) : (
-            <Loader2 className="w-4 h-4 animate-spin text-white/60" />
+            <Loader2 className="w-4 h-4 animate-spin text-black/60" />
           )}
         </div>
       </div>
       
       <div className="mt-3 pt-3 border-t border-white/10">
-        <p className="text-xs text-white/60">
+        <p className="text-xs text-black/60">
           Using free APIs - no registration required
         </p>
       </div>

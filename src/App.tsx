@@ -4,12 +4,14 @@ import Navigation from './components/Navigation'
 import Home from './components/Home'
 import ProxyChecker from './components/ProxyChecker'
 import FraudDetectionPage from './components/FraudDetectionPage'
+import FloatingItems from './components/FloatingItems'
 
 function App() {
   return (
     <BrowserRouter>
       <div className="min-h-screen">
         <Navigation />
+        <FloatingItems />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/proxy" element={<ProxyChecker />} />
