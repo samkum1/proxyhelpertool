@@ -2,7 +2,7 @@ import './globals.css'
 import Nav from '../components/Nav'
 import FloatingItems from '../components/FloatingItems'
 export const metadata = {
-  title: 'Proxy Helper Tool',
+  title: 'Lightning Proxies - Proxy Helper Tool',
   description: 'Proxy checking and fraud detection',
   icons: {
     icon: 'https://lightningproxies.net/favicon.ico',
