@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Globe, Home, Shield } from 'lucide-react'
 import { useState, useEffect } from 'react'
+import IPDisplay from './IPDisplay'
 
 export default function Navigation() {
   const pathname = usePathname()
@@ -39,7 +40,8 @@ export default function Navigation() {
             </div>
           </Link>
           
-          <div className="flex items-center gap-1 sm:gap-2 lg:gap-3">
+          {/* Centered Navigation Links */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center gap-1 sm:gap-2 lg:gap-3">
             <Link 
               href="/" 
               className={`group relative flex items-center gap-2 px-3 sm:px-5 py-2 rounded-xl overflow-hidden transition-all duration-500 ease-in-out ${
@@ -102,6 +104,11 @@ export default function Navigation() {
                 <span className={`hidden sm:inline font-medium transition-colors duration-500 ease-in-out`}>Fraud Detection</span>
               </div>
             </Link>
+          </div>
+          
+          {/* IP Display on the right */}
+          <div className="flex items-center">
+            <IPDisplay />
           </div>
         </div>
       </div>
